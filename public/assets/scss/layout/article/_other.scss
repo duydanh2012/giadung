@@ -1,0 +1,45 @@
+.listOtherArticle {
+    margin-top: 15px;
+
+    .media {
+        margin-top: 15px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        .media-body {
+            padding-left: 10px;
+        }
+    }
+}
+
+.wrapImgOtherArticle {
+    width: 87px;
+}
+
+.titleItemOtherArticle {
+    margin: 0;
+}
+
+.linkItemOtherArticle {
+    font-size: 24px;
+    line-height: 30px;
+    color: $color1;
+    @include splitText(2, 60px);
+    font-weight: 700;
+    font-family: $nameFont2;
+    @include transition(0.5s);
+    text-transform: capitalize;
+
+    &:hover {
+        color: $color3;
+    }
+}
+
+.dateCreateOtherArticle {
+    color: $color1;
+    font-size: 16px;
+    margin-top: 5px;
+    line-height: 22px;
+}

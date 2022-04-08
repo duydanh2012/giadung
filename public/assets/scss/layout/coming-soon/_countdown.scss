@@ -1,0 +1,220 @@
+#countdown-block {
+	display: none;
+	overflow: hidden;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	text-align: center;
+	-webkit-transition: all ease .4s;
+	-moz-transition: all ease .4s;
+	-ms-transition: all ease .4s;
+	-o-transition: all ease .4s;
+	transition: all ease .4s;
+}
+.sidemenu #site-header,
+.sidemenu #countdown-block  {
+	margin-left: 300px;
+}
+#countdown-label {
+	letter-spacing: 3px;
+	font-size: 18px;
+	line-height: 24px;
+	text-transform: uppercase;
+	margin-bottom: 17px;
+	font-weight: 300;
+	font-family: $nameFont3;
+}
+#countdown {
+	margin: 0 -50px;
+	text-align: left;
+	display: inline-block;
+}
+#countdown .countdown-section {
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	font-size: 60px;
+	line-height: 72px;
+	font-weight: 100;
+	font-family: $nameFont3;
+}
+#countdown .countdown-section + .countdown-section {
+	margin-left: 37px;
+}
+#countdown .countdown-period {
+	display: block;
+}
+#countdown .countdown-section .sep {
+	position: absolute;
+	top: 0;
+	right: -20px;
+}
+@-webkit-keyframes clock-rotate {
+	0% {
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	0% {
+		-webkit-transform: rotate(180deg);
+		-moz-transform: rotate(180deg);
+		-ms-transform: rotate(180deg);
+		-o-transform: rotate(180deg);
+		transform: rotate(180deg);
+	}
+}
+@-moz-keyframes clock-rotate {
+	0% {
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	0% {
+		-webkit-transform: rotate(180deg);
+		-moz-transform: rotate(180deg);
+		-ms-transform: rotate(180deg);
+		-o-transform: rotate(180deg);
+		transform: rotate(180deg);
+	}
+}
+@-o-keyframes clock-rotate {
+	0% {
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	0% {
+		-webkit-transform: rotate(180deg);
+		-moz-transform: rotate(180deg);
+		-ms-transform: rotate(180deg);
+		-o-transform: rotate(180deg);
+		transform: rotate(180deg);
+	}
+}
+@keyframes clock-rotate {
+	0% {
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	0% {
+		-webkit-transform: rotate(180deg);
+		-moz-transform: rotate(180deg);
+		-ms-transform: rotate(180deg);
+		-o-transform: rotate(180deg);
+		transform: rotate(180deg);
+	}
+}
+#sandglass-wrap {
+	padding: 30px 0 35px;
+}
+#sandglass {
+	text-align: center;
+}
+#sandglass .sand-half {
+	position: relative;
+	height: 150px;
+	width: 100%;
+	margin: 0 auto;
+	max-width: 174px;
+	border-top: 2px solid #fff;
+}
+#sandglass .sand-half + .sand-half {
+	border-top: none;
+	border-bottom: 2px solid #fff;
+}
+#sandglass.rotating {
+	-webkit-animation: clock-rotate 1s infinite; /* Safari 4+ */
+	-moz-animation:    clock-rotate 1s infinite; /* Fx 5+ */
+	-o-animation:      clock-rotate 1s infinite; /* Opera 12+ */
+	animation:         clock-rotate 1s infinite; /* IE 10+, Fx 29+ */
+}
+#sandglass .part-top {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	bottom: 0;
+	display: block;
+	width: 0;
+	height: 0;
+	border-width: 150px 87px 0 87px;
+	border-style: solid;
+	border-color: #fff transparent transparent transparent;
+}
+#sandglass .part-bot {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	display: block;
+	width: 0;
+	height: 0;
+	border-width: 0 87px 0 87px;
+	border-style: solid;
+	border-color: transparent transparent #fff transparent;
+}
+
+@media (min-width: 1200px) and (max-height: 660px) {
+	#sandglass-wrap {
+		padding: 20px 0 20px;
+	}
+
+	#countdown-label {
+		margin-bottom: 5px;
+	}
+
+	#site-logo {
+		margin-bottom: 20px;
+	}
+}
+
+@media (max-width: 991px) {
+	#sandglass {
+		.sand-half {
+			max-width: 92px;
+			height: 80px;
+
+			+ .sand-half {				
+				border-top: none;
+				border-bottom: 2px solid #fff;
+			}
+		}
+
+		.part-top {
+			border-width: 80px 46px 0 46px;
+			border-style: solid;
+		}
+
+		.part-bot {
+			border-width: 0 46px 0 46px;
+			border-style: solid;
+		}
+	}
+
+	#countdown-block {
+		padding: 0 15px;
+	}
+}
+
+@media (max-width: 359px) {
+	#sandglass-wrap {
+		padding: 10px 0 15px;
+	}
+
+	#countdown-label {
+		font-size: 12px;
+		line-height: 18px;
+		margin-bottom: 10px;
+	}
+}

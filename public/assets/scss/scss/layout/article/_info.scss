@@ -1,0 +1,19 @@
+.wrapInfoArticle {
+    margin-top: 30px;
+    color: $color1;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.authorCreate {
+    display: inline-block;
+    position: relative;
+    padding-right: 20px;
+
+    &::after {
+        position: absolute;
+        content: '/';
+        right: 0;
+        top: 0;
+    }
+}

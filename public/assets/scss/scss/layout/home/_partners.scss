@@ -1,0 +1,45 @@
+.wrapPartners {    
+    padding: 60px 0 20px 0;
+}
+
+.imgPartnerSlide {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+}
+
+.linkPartnerSlide {
+    display: block;
+}
+
+.contentItemSlidePartner {
+    padding: 0 30px;
+}
+
+.showSlidePartners  {
+    padding-top: 30px;
+}
+
+@media (max-width: 991px) {
+    .wrapPartners {
+        padding-top: 10px;
+    }
+
+    .showSlidePartners  {
+        padding-top: 30px;
+    }
+
+    .contentItemSlidePartner {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 575px) {
+    .linkPartnerSlide {
+        padding: 0 15px;
+    }
+
+    .contentItemSlidePartner {
+        padding: 0 7.5px;
+    }
+}

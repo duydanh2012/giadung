@@ -1,0 +1,42 @@
+@import '../abstracts/variable';
+@import '../abstracts/mixin';
+
+// slick slider
+@import '../vendor/slick';
+// end slick slider
+
+// slide main
+@import '../layout/home/slideMain';
+// end slide main
+
+// about home
+@import '../layout/home/aboutHome';
+// end about home
+
+// buy
+@import '../layout/home/buy';
+// end buy
+
+// products
+@import '../layout/home/products';
+// end products
+
+// music clip
+@import '../layout/home/musicClip';
+// end music clip
+
+// partners
+@import '../layout/home/partners';
+// end partners
+
+// manager
+@import '../layout/home/manager';
+// end manager
+
+// video
+@import '../layout/home/video';
+// end video
+
+// testimonal
+@import '../layout/home/testimonal';
+// end testimonal

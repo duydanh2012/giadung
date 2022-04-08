@@ -1,0 +1,131 @@
+.wrapTestimonal {    
+    padding: 40px 0;
+}
+
+.wrapTextTestimonal {
+    font-size: 30px;
+    line-height: 40px;
+    color: $color1;
+    font-family: $nameFont2;
+    font-weight: 700;
+}
+
+.wrapInfoUser {
+    margin-top: 15px;
+    color: $color1;
+    font-size: 16px;
+    line-height: 22px;
+    text-transform: capitalize;
+}
+
+.wrapIconTestimonal {
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .showSlideTestimonal {
+        padding-right: 80px;
+    }
+
+    .wrapTestimonal {
+        .dotsSlide1 {
+            .slick-dots {
+                left: auto;
+                bottom: auto;
+                border-bottom: none;
+                bottom: auto;
+                right: -15px;
+                top: 0;
+
+                &:after {
+                    bottom: auto;
+                    left: auto;
+                    right: 0;
+                    height: auto;
+                    width: 1px;
+                    top: 9px;
+                    bottom: 9px;
+                }
+        
+                button {
+                    border: none;
+                    font-size: 14px;
+                    line-height: 20px;
+                    text-align: center;
+                    background-color: transparent;
+                    color: $color1;
+                    padding: 0;
+                    @include transform(rotate(0deg));
+        
+                    &:focus {
+                        outline: unset;
+                        outline: none;
+                    }
+                }
+        
+                li {
+                    display: block;
+                    margin-left: 0;
+                    padding-bottom: 0;
+                    padding-right: 25px;
+                    margin-top: 10px;
+        
+                    &:after {
+                        bottom: auto;
+                        left: auto;
+                        right: 0;
+                        top: 50%;
+                        width: 10px;
+                        height: 1px;
+                        @include translate(0, -50%);
+                    }
+        
+                    &:first-child {
+                        margin-top: 0;
+                    }
+        
+                    &.slick-active {
+                        &:after {
+                            width: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .wrapTestimonal {
+        padding: 15px 0;
+    }
+
+    .showSlideTestimonal {
+        padding-bottom: 70px;
+    }
+
+    .wrapTextTestimonal {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    
+    .wrapInfoUser {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+@media (max-width: 991px) {
+    .wrapIconTestimonal {
+        img {
+            width: 50px;
+        }
+    }
+
+    .colTextTestimonal{
+        margin-top: 15px;
+    }
+}

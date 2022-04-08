@@ -1,0 +1,18 @@
+@import '../abstracts/variable';
+@import '../abstracts/mixin';
+
+// paging
+@import '../components/paging';
+// end paging
+
+// breadcrumb
+@import '../components/breadcrumb';
+// end breadcrumb
+
+// news
+@import '../layout/home/news';
+// end news
+
+// list
+@import '../layout/article/list';
+// end list

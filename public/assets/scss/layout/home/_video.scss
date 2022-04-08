@@ -1,0 +1,74 @@
+.wrapVideoHome {    
+    padding: 40px 0;
+}
+
+.imgVideoHome {
+    width: 100%;
+    height: auto;
+}
+
+.contentVideoHome {
+    position: relative;
+    cursor: pointer;
+
+    .iconPlayBorder,
+    .iconPlayContent {
+        svg {
+            width: 120px;
+            height: 120px;
+        }
+    }
+
+    .iconPlayContent {
+        svg {
+            margin-left: -8px;
+        }
+    }
+
+    &:hover {
+        .iconPlayContent {
+            svg {
+                @include transform(scale(1));
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .wrapVideoHome {
+        padding-top: 10px;
+    }
+
+    .contentVideoHome {    
+        .iconPlayBorder,
+        .iconPlayContent {
+            svg {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    
+        .iconPlayContent {
+            svg {
+                margin-left: -4px;
+            }
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .wrapVideoHome {
+        padding: 15px 0;
+    }
+
+    .contentVideoHome {    
+        .iconPlayBorder,
+        .iconPlayContent {
+            svg {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    }
+}

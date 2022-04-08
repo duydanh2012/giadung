@@ -1,0 +1,22 @@
+@import '../abstracts/variable';
+@import '../abstracts/mixin';
+
+// breadcrumb
+@import '../components/breadcrumb';
+// end breadcrumb
+
+// info
+@import '../layout/article/info';
+// end info
+
+// other
+@import '../layout/article/other';
+// end other
+
+// categories
+@import '../layout/article/categories';
+// end categories
+
+// detail
+@import '../layout/article/detail';
+// end detail

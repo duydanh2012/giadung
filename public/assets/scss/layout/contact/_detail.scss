@@ -1,0 +1,125 @@
+.wrapContact {
+    padding: 40px 0;
+}
+
+.wrapTextContct {
+    font-size: 16px;
+    line-height: 22px;
+    color: $color1;
+    margin-top: 15px;
+
+    p {
+        margin: 10px 0 0 0;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    a {
+        color: $color1;
+        @include transition(0.5s);
+
+        &:hover {
+            color: $color3;
+        }
+    }
+}
+
+.rowFrmContact {
+    margin: 30px -7.5px 0 -7.5px;
+}
+
+.colItemFrmContact {
+    margin-bottom: 15px;
+    padding: 0 7.5px;
+}
+
+.contentItemFrmContact {
+    background-color: $color8;
+    border: 2px solid $color1;
+}
+
+.inputItemFrmContact {
+    border: none;
+    background-color: transparent;
+    color: $color1;
+    padding: 10px 15px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    width: 100%;
+
+    &::placeholder {
+        color: $color1;
+        opacity: 1;
+    }
+
+    &:-ms-input-placeholder {
+        color: $color1;
+    }
+
+    &::-ms-input-placeholder {
+        color: $color1;
+    }
+}
+
+.wrapCaptchaContact {
+    .contentItemFrmContact,
+    .imgCaptcha,
+    .imgRefreshCaptcha,
+    .wrapBtnSendContact {
+        float: left;
+    }
+
+    .contentItemFrmContact,
+    .imgCaptcha,
+    .imgRefreshCaptcha {
+        margin-right: 15px;
+    }
+
+    .contentItemFrmContact {
+        width: 200px;
+    }
+
+    .imgCaptcha,
+    .imgRefreshCaptcha {
+        height: 30px;
+        width: auto;
+        margin-top: 9px;
+    }
+}
+
+#map {
+    margin-top: 60px;
+    height: 500px;
+}
+
+@media (max-width: 991px) {
+    .wrapContact {
+        padding: 15px 0;
+    }
+
+    .wrapTextContct {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .inputItemFrmContact {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .wrapCaptchaContact {    
+        .contentItemFrmContact {
+            width: 100%;
+            clear: both;
+            margin: 0 0 15px 0;
+        }
+    }
+
+    #map {
+        margin-top: 30px;
+        height: 300px;
+    }
+}

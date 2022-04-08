@@ -1,0 +1,38 @@
+
+
+.wrapBreadCrumb {
+    position: relative;
+}
+
+.wrapImgBreacrumb {
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.wrapTextBreadcrumb {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    @include translate(0, -50%);
+    top: 50%;
+}
+
+@media (max-width: 991px) {
+    .wrapImgBreacrumb {
+        height: 250px;
+    }
+
+    .wrapImgBreacrumb {
+        background-attachment:unset;
+        background-attachment: none;
+    }
+}
+
+@media (max-width: 575px) {
+    .wrapImgBreacrumb {
+        height: 150px;
+    }
+}

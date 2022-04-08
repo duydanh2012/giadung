@@ -1,0 +1,139 @@
+.wrapCreator {    
+    padding: 40px 0;
+}
+
+.wrapImgCreator {
+    position: relative;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.wrapTextInfoCreator {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+
+.titleNameCreator {
+    font-size: 20px;
+    line-height: 30px;
+    color: $color1;
+    font-family: $nameFont2;
+    text-transform: capitalize;
+    font-weight: 700;
+    margin: 0;
+}
+
+.titleTypeCreator,
+.titlePlaceCreator {
+    margin: 5px 0 0 0;
+    font-size: 16px;
+    line-height: 22px;
+    color: $color1;
+}
+
+.wrapTextDesCreator {
+    margin-top: 30px;
+}
+
+.contentTextCreator {
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 22px;
+    color: $color1;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    p {
+        margin-bottom: 15px;
+    }
+
+    a {
+        color: $color1;
+        @include transition(0.5s);
+        word-break: break-all;
+
+        &:hover {
+            color: $color3;
+        }
+    }
+}
+
+.wrapTabTextCreator {
+    margin-top: 30px;
+
+    .nav-tabs,
+    .tab-content {
+        margin-top: 15px;
+    }
+
+    .nav-link {
+        color: $color1;
+        @include transition(0.5s);
+
+        &:hover {
+            color: $color3;
+            border-color: transparent;
+        }
+    }
+}
+
+.wrapProductionCreator {
+    margin-top: 30px;
+}
+
+.colItemProduction {
+    margin-top: 30px;
+}
+
+.linkItemProduction {
+    padding-top: 147%;
+}
+
+@media (max-width: 991px) {
+    .wrapCreator {
+        padding: 15px 0;
+    }
+
+    .colItemProduction {
+        padding: 0 7.5px;
+        margin-top: 15px;
+    }
+
+    .rowProductTionCreator {
+        margin: 0 -7.5px;
+    }
+
+    .contentTextCreator {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .wrapTextInfoCreator {
+        bottom: 15px;
+        left: 15px;
+    }
+    
+    .titleNameCreator {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    
+    .titleTypeCreator,
+    .titlePlaceCreator {
+        font-size: 12px;
+        line-height: 18px;
+        margin-top: 0;
+    }
+
+    .titleBlockCreator {
+        font-size: 24px;
+        line-height: 30px;
+    }
+}

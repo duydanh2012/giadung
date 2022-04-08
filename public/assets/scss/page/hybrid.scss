@@ -1,0 +1,22 @@
+@import '../abstracts/variable';
+@import '../abstracts/mixin';
+
+// slick slider
+@import '../vendor/slick';
+// end slick slider
+
+// slide main
+@import '../layout/home/slideMain';
+// end slide main
+
+// buy
+@import '../layout/home/buy';
+// end buy
+
+// count down
+@import '../layout/home/countDown';
+// end count down
+
+// hybrid
+@import '../layout/article/hybrid';
+// end hybrid

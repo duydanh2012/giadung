@@ -1,0 +1,17 @@
+.wrapCopyright{
+    background-color: $color8;
+    color: $color1;
+    padding: 10px 0;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+
+    a {
+        color: $color1;
+        @include transition(0.5s);
+
+        &:hover {
+            color: $color3;
+        }
+    }
+}

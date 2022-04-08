@@ -1,0 +1,33 @@
+.wrapPaggingList {
+    margin: auto;
+    text-align: center;
+    display: table;
+    margin-top: 30px;
+}
+
+.linkPagging {
+    font-size: 18px;
+    line-height: 24px;
+    color: $color1;
+    display: block;
+    @include transition(0.5s);
+    float: left;
+    margin: 0 10px;
+    text-align: center;
+    font-weight: 700;
+    font-family:  $nameFont2;
+    border-bottom: 2px solid transparent;
+
+    svg {
+        width: 15px;
+        height: 24px;
+        display: block;
+        @include translate(0, 2px);
+    }
+
+    &.active,
+    &:hover {
+        color: $color1;
+        border-bottom: 2px solid $color1;
+    }
+}

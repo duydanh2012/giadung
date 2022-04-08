@@ -1,0 +1,26 @@
+@import '../abstracts/variable';
+@import '../abstracts/mixin';
+
+// breadcrumb
+@import '../components/breadcrumb';
+// end breadcrumb
+
+// slick slider
+@import '../vendor/slick';
+// end slick slider
+
+// about home
+@import '../layout/home/aboutHome';
+// end about home
+
+// products
+@import '../layout/home/products';
+// end products
+
+// partners
+@import '../layout/home/partners';
+// end partners
+
+// detail
+@import '../layout/about/detail';
+// end detail

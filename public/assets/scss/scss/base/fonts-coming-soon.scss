@@ -1,0 +1,21 @@
+@import '../abstracts/variable';
+
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400&display=swap');
+
+@font-face {
+    font-family: $nameFont3;
+    src: url(../fonts/#{$nameFont3}-Thin.ttf);
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: $nameFont3;
+    font-weight: 300;
+    src: url(../fonts/#{$nameFont3}-Light.ttf);
+}
+
+@font-face {
+    font-family: $nameFont3;
+    font-weight: 400;
+    src: url(../fonts/#{$nameFont3}-Regular.ttf) format('ttf');
+}

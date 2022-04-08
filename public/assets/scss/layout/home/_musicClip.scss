@@ -1,0 +1,91 @@
+.wrapMusicClip {    
+    padding: 40px 0;
+}
+
+.iconPlayBorder,
+.iconPlayContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include translate(-50%, -50%);
+    color: $color1;
+
+    svg {
+        width: 60px;
+        height: 60px;
+        display: block;
+        @include transition(0.5s);
+    }
+}
+
+.iconPlayContent {
+    svg {
+        @include transform(scale(0.6));
+        margin-left: -4px;
+    }
+}
+
+.contentItemMusicClip {
+    position: relative;
+    padding: 0 15px;
+    display: block;
+
+    &:hover {
+        .iconPlayContent {
+            svg {
+                @include transform(scale(1));
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+.showSlideMusicClip {
+    margin-top: 30px;
+}
+
+@media (max-width: 1199px) {
+    .iconPlayBorder,
+    .iconPlayContent {
+        svg {
+            width: 40px;
+            height: 40px;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .wrapMusicClip {
+        padding: 15px 0;
+    }
+
+    .iconPlayBorder,
+    .iconPlayContent {
+        svg {
+            width: 30px;
+            height: 30px;
+        }
+    }
+    
+    .titleItemMusicClip {
+        padding-bottom: 15px;    
+    }
+}
+
+@media (max-width: 575px) {
+    .iconPlayBorder,
+    .iconPlayContent {
+        svg {
+            width: 30px;
+            height: 30px;
+        }
+    }
+
+    .contentItemMusicClip {
+        padding: 0 7.5px;
+    }
+
+    .showSlideMusicClip {
+        margin-top: 15px;
+    }
+}

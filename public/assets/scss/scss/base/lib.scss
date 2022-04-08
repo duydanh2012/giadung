@@ -1,0 +1,63 @@
+@import '../abstracts/variable';
+@import '../abstracts/mixin';
+
+// light gallery
+@import '../vendor/lightGallery';
+// end light gallery
+
+// video js
+@import '../vendor/videoJS';
+// end video js
+
+// bootstrap
+@import '../vendor/bootstrap';
+// end bootstrap
+
+// others
+@import '../vendor/others';
+// end others
+
+// button 
+@import '../components/buttons';
+// end button
+
+// titles
+@import '../components/titles';
+// end titles
+
+// wrap resize img
+@import '../components/wrapImgResize';
+// wrap resize img
+
+// header
+@import '../components/header';
+// end header
+
+// footer
+@import '../components/footer';
+// end footer
+
+// copyright
+@import '../components/copyright';
+// end copyright
+
+// btn scroll top
+@import '../components/btnScrollTop';
+// end btn scroll top
+
+// search popup
+@import '../components/searchPopup';
+// end search popup
+
+html {
+    background-color: $color1;
+}
+
+body {
+    @include opacity(0);
+
+    &.showContent {
+        @include opacity(1);
+        background-color: $color8;
+    }
+}

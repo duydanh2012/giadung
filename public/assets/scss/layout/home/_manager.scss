@@ -1,0 +1,135 @@
+.wrapManager {    
+    padding: 40px 0;
+    overflow: hidden;
+}
+
+.wrapSlideManager {
+    padding: 15px 15px 0 15px;
+}
+
+.showSlideManager {
+    margin: 0 -7.5px;
+}
+
+.itemSlideManager {
+    padding: 0 7.5px;
+}
+
+.wrapImgManager {
+    display: block;
+    background-color: $color1;
+
+    img {
+        @include transition(1s);
+    }
+}
+
+.wrapTextSlideManager {
+    position: absolute;
+    top: 70%;
+    padding: 0 15px;
+    left: 0;
+    width: 100%;
+    @include translate(0, -50%);
+    @include transition(0.5s);
+    text-align: center;
+    @include opacity(0);
+}
+
+.typeManagerSlide {
+    font-size: 16px;
+    line-height: 22px;
+    color: $color8;
+    text-transform: capitalize;
+    font-weight: 700;
+    color: $color1;
+}
+
+.titleHeadingSlidemanager {
+    margin: 0;
+}
+
+.linkTitlemManager {
+    color: $color8;
+    text-transform: capitalize;
+    font-size: 24px;
+    line-height: 30px;
+    display: block;
+    font-weight: 700;
+    font-family: $nameFont2;
+    @include transition(1s);
+
+    &:hover {
+        color: $color3;
+    }
+}
+
+.wrapBgAnimateManager {
+    background-position: center;
+    background-repeat: repeat;
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    height: 200%;
+    width: 200%;
+    -webkit-animation: noise-animation 1s steps(4) infinite;
+    animation: noise-animation 1s steps(4) infinite;
+    @include opacity(0);
+    @include transition(1s);
+}
+
+.contentItemManager {
+    position: relative;
+    padding-top: 15px;
+
+    &:hover {
+        .wrapTextSlideManager {
+            top: 50%;
+            @include opacity(1);
+        }
+
+        .wrapBgAnimateManager {
+            @include opacity(1);
+        }
+
+        .wrapImgManager {        
+            img {
+                @include opacity(0.3);
+            }
+        }
+    }
+}
+
+.linkFollowManagerSlide {
+    margin-top: 10px;
+
+    .linkFanpageAboutHeader {
+        svg {
+            height: 20px;
+        }
+    }
+}
+
+@media (max-width: 1199px) {
+    .linkTitlemManager {
+        font-size: 20px;
+    }
+
+    .typeManagerSlide {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+@media (max-width: 991px) {
+    .wrapManager {
+        padding: 15px 0;
+    }
+}
+
+@media (max-width: 359px) {
+    .linkTitlemManager {
+        font-size: 18px;
+        line-height: 24x;
+    }
+}
