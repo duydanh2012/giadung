@@ -5,7 +5,6 @@ namespace Platform\Blog\Models;
 use Platform\ACL\Models\User;
 use Platform\Base\Traits\EnumCastable;
 use Platform\Base\Enums\BaseStatusEnum;
-use Platform\Revision\RevisionableTrait;
 use Platform\Base\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -13,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Post extends BaseModel
 {
-    use RevisionableTrait;
     use EnumCastable;
 
     /**

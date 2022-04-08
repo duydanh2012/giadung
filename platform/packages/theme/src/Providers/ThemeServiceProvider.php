@@ -82,29 +82,29 @@ class ThemeServiceProvider extends ServiceProvider
                     'icon'        => null,
                     'url'         => route('theme.options'),
                     'permissions' => ['theme.options'],
-                ])
-                ->registerItem([
-                    'id'          => 'cms-core-appearance-custom-css',
-                    'priority'    => 5,
-                    'parent_id'   => 'cms-core-appearance',
-                    'name'        => 'packages/theme::theme.custom_css',
-                    'icon'        => null,
-                    'url'         => route('theme.custom-css'),
-                    'permissions' => ['theme.custom-css'],
                 ]);
+                // ->registerItem([
+                //     'id'          => 'cms-core-appearance-custom-css',
+                //     'priority'    => 5,
+                //     'parent_id'   => 'cms-core-appearance',
+                //     'name'        => 'packages/theme::theme.custom_css',
+                //     'icon'        => null,
+                //     'url'         => route('theme.custom-css'),
+                //     'permissions' => ['theme.custom-css'],
+                // ]);
 
-            if (config('packages.theme.general.enable_custom_js')) {
-                dashboard_menu()
-                    ->registerItem([
-                        'id'          => 'cms-core-appearance-custom-js',
-                        'priority'    => 6,
-                        'parent_id'   => 'cms-core-appearance',
-                        'name'        => 'packages/theme::theme.custom_js',
-                        'icon'        => null,
-                        'url'         => route('theme.custom-js'),
-                        'permissions' => ['theme.custom-js'],
-                    ]);
-            }
+            // if (config('packages.theme.general.enable_custom_js')) {
+            //     dashboard_menu()
+            //         ->registerItem([
+            //             'id'          => 'cms-core-appearance-custom-js',
+            //             'priority'    => 6,
+            //             'parent_id'   => 'cms-core-appearance',
+            //             'name'        => 'packages/theme::theme.custom_js',
+            //             'icon'        => null,
+            //             'url'         => route('theme.custom-js'),
+            //             'permissions' => ['theme.custom-js'],
+            //         ]);
+            // }
 
             admin_bar()
                 ->registerLink(trans('packages/theme::theme.name'), route('theme.index'), 'appearance')

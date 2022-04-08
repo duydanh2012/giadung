@@ -6,12 +6,10 @@ use Platform\ACL\Models\User;
 use Platform\Base\Enums\BaseStatusEnum;
 use Platform\Base\Models\BaseModel;
 use Platform\Base\Traits\EnumCastable;
-use Platform\Revision\RevisionableTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Page extends BaseModel
 {
-    use RevisionableTrait;
     use EnumCastable;
 
     /**
