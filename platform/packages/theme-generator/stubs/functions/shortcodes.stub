@@ -1,8 +1,0 @@
-<?php
-
-use Platform\Theme\Supports\ThemeSupport;
-
-app()->booted(function () {
-    ThemeSupport::registerGoogleMapsShortcode();
-    ThemeSupport::registerYoutubeShortcode();
-});

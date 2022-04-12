@@ -1,8 +1,0 @@
-{
-  "name": "platform/captcha",
-  "description": "Captcha for higher security",
-  "homepage": "https://platform.com",
-  "require": {
-    "google/recaptcha": "^1.2"
-  }
-}

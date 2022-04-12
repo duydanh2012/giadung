@@ -1,9 +1,0 @@
-{
-    "name": "Products",
-    "namespace": "Platform\\Products\\",
-    "provider": "Platform\\Products\\Providers\\ProductsServiceProvider",
-    "author": "N/A",
-    "url": "N/A",
-    "version": "1.0",
-    "description": "The description for module products"
-}

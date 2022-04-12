@@ -1,9 +1,0 @@
-{
-    "name": "Contact Form",
-    "namespace": "Platform\\Contact\\",
-    "provider": "Platform\\Contact\\Providers\\ContactServiceProvider",
-    "author": "Platform Technologies",
-    "url": "https://platform.com",
-    "version": "5.8",
-    "description": "Contact Form"
-}
