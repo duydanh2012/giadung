@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashBoardController;
+use App\Http\Controllers\Admin\TrademarkController;
 use App\Http\Controllers\Admin\UserController;
 
 /*
@@ -22,6 +23,6 @@ Route::get('/', function () {
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashBoardController::class, 'index'])->name('admin.dashboard');
     Route::resource('user', UserController::class);
-    Route::get('user/data', [DashBoardController::class, 'getData'])->name('user.data');
+    Route::resource('trademark', TrademarkController::class);
 });
 

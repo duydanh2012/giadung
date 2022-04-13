@@ -1,19 +1,26 @@
 @extends('admin.index')
 
-@section('title', 'Thêm người dùng')
+@section('title', isset($data) ? 'Sửa người dùng' : 'Thêm người dùng')
 
 @section('content')
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Thêm Người Dùng</h1>
+            <h1 class="mt-4">@if(isset($data)) Sửa người dùng @else Thêm người dùng @endif</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Thêm người dùng</li>
+                <li class="breadcrumb-item"><a href="{{ route('user.index') }}">Người dùng</a></li>
+                <li class="breadcrumb-item active">@if(isset($data)) Sửa người dùng @else Thêm người dùng @endif</li>
             </ol>
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fa-solid fa-square-plus"></i>
-                    Thêm người dùng mới
+                   
+                    @if(isset($data))
+                        <i class="fa-solid fa-pen-to-square"></i> 
+                        Sửa người dùng 
+                    @else 
+                        <i class="fa-solid fa-square-plus"></i>
+                        Thêm người dùng mới 
+                    @endif
                 </div>
                 <div class="card-body">
                     <form action="{{ isset($data) ? route('user.update', $data->id) : route('user.store') }}" method="POST" enctype="multipart/form-data">
