@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ColorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\Admin\TrademarkController;
@@ -24,5 +25,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [DashBoardController::class, 'index'])->name('admin.dashboard');
     Route::resource('user', UserController::class);
     Route::resource('trademark', TrademarkController::class);
+    Route::resource('color', ColorController::class);
 });
 
