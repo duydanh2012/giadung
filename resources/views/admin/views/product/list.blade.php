@@ -1,14 +1,14 @@
 @extends('admin.index')
 
-@section('title', 'Màu sắc')
+@section('title', 'Sản phẩm')
 
 @section('content')
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Màu sắc</h1>
+            <h1 class="mt-4">Sản phẩm</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Màu sắc</li>
+                <li class="breadcrumb-item active">Sản phẩm</li>
             </ol>
             @if (session('alert_success'))
                 <div class="alert alert-success">
@@ -18,22 +18,28 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Bảng danh sách màu sắc
+                    Bảng danh sách Sản phẩm
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th class="text-center">ID</th>
-                                <th>Tên màu sắc</th>
+                                <th class="text-center">Mã</th>
+                                <th>Tên sản phẩm</th>
+                                <th class="text-center">Hình ảnh</th>
+                                <th>Số lượng</th>
+                                <th class="text-center">Thương hiệu</th>
                                 <th>Ngày tạo</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th class="text-center">ID</th>
-                                <th>Tên màu sắc</th>
+                                <th class="text-center">Mã</th>
+                                <th>Tên sản phẩm</th>
+                                <th class="text-center">Hình ảnh</th>
+                                <th>Số lượng</th>
+                                <th class="text-center">Thương hiệu</th>
                                 <th>Ngày tạo</th>
                                 <th></th>
                             </tr>
@@ -46,12 +52,25 @@
                             @else
                                 @foreach ($datas as $item)
                                     <tr>
-                                        <td  class="text-center">{{ $item->id }}</td>
+                                        <td  class="text-center">{{ $item->code }}</td>
                                         <td>{{ $item->name }}</td>
+                                        <td class="text-center">
+                                            @if ($item->thumbnail)
+                                                <img src="{{ asset($item->thumbnail) }}" alt="{{ $item->name }}" style="max-width: 100px; max-height: 70px;">
+                                            @endif
+                                        </td>
+                                        <td>{{ ($item->phone) ? '+84 ' . number_format($item->phone, 0, " ", " ") : NULL }}</td>
+                                        <td  class="text-center">
+                                            @if ($item->role_id == 1)
+                                                <li class="text-success" style="list-style: none"><i class="fas fa-circle"></i></li>
+                                            @else
+                                                <li  style="list-style: none"><i class="fas fa-circle"></i></li>
+                                            @endif
+                                        </td>
                                         <td>{{ date("d-m-Y", strtotime($item->created_at) ) }}</td>
                                         <td>
-                                            <a href="{{ route('color.edit', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            <button type="button" data-href="{{ route('color.destroy', $item->id) }}" class="btn btn-danger btn-sm btn-delete" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <a href="{{ route('product.edit', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <button type="button" data-href="{{ route('product.destroy', $item->id) }}" class="btn btn-danger btn-sm btn-delete" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
                                         </td>
@@ -64,7 +83,7 @@
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Xóa màu sắc</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">Xóa Sản phẩm</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">

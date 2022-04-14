@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\ProductDetail;
+use App\Models\Product;
 
 class Color extends Model
 {
@@ -18,8 +18,8 @@ class Color extends Model
         'name',
     ];
 
-    public function comment(): HasMany
+    public function products(): HasMany
     {
-    	return $this->hasMany(ProductDetail::class, 'color_id', 'id');
+    	return $this->hasMany(Product::class, 'color_id', 'id');
     }
 }

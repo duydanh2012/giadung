@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Color;
+use App\Models\Trademark;
+use App\Models\Type;
+use App\FileHelper;
 
 class ProductController extends Controller
 {
@@ -15,7 +19,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $datas = Product::with('trademark')->get();
+
+        return view('admin.views.product.list')->with(compact('datas'));
     }
 
     /**
@@ -25,7 +31,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $types = Type::orderBy('name', 'asc')->get();
+        $colors = Color::orderBy('name', 'asc')->get();
+        $trademarks = Trademark::orderBy('name', 'asc')->get();
+
+        return view('admin.views.product.form')->with(compact('types', 'colors', 'trademarks'));
     }
 
     /**
@@ -36,7 +46,42 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->input();
+
+        $data['images'] = json_encode($request->input('images'));
+
+        if($request->input('hot')){
+            $data['hot'] = 1;
+        }
+
+        if($request->input('new')){
+            $data['new'] = 1;
+        }
+
+        if($request->hasFile('thumbnail')){
+            $img_file_name = FileHelper::saveImage($request->file('thumbnail'), 'uploads/products');
+
+            $data['thumbnail'] = $img_file_name;
+        }else{
+            $data['thumbnail'] = '';
+        }
+        
+        $data['code'] = $request->input('trademark_id') . $request->input('color') . uniqid();
+
+        
+
+        $product = Product::create($data);
+
+        $types = $request->input('type');
+        if(!empty($types) && is_array($types)){
+            $product->types()->sync($types);
+        }
+
+        foreach ($request->input('images', []) as $file) {
+            $product->addMedia(public_path('uploads/products/' . $file))->toMediaCollection('images');
+        }
+
+        return redirect(route('product.index'))->with('alert_success', 'Thêm sản phẩm thành công!');
     }
 
     /**
@@ -56,9 +101,15 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $Product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $data = Product::with('types')->find($id);
+
+        $types = Type::orderBy('name', 'asc')->get();
+        $colors = Color::orderBy('name', 'asc')->get();
+        $trademarks = Trademark::orderBy('name', 'asc')->get();
+
+        return view('admin.views.product.form')->with(compact('types', 'colors', 'trademarks', 'data'));
     }
 
     /**
