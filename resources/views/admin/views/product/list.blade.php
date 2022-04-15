@@ -38,7 +38,7 @@
                                 <th class="text-center">Mã</th>
                                 <th>Tên sản phẩm</th>
                                 <th class="text-center">Hình ảnh</th>
-                                <th>Số lượng</th>
+                                <th class="text-center">Số lượng</th>
                                 <th class="text-center">Thương hiệu</th>
                                 <th>Ngày tạo</th>
                                 <th></th>
@@ -47,7 +47,7 @@
                         <tbody>
                             @if ($datas->count() <= 0)
                                 <tr>
-                                    <td colspan="4" class="text-center">Không có dữ liệu</td>
+                                    <td colspan="6" class="text-center">Không có dữ liệu</td>
                                 </tr>
                             @else
                                 @foreach ($datas as $item)
@@ -59,14 +59,8 @@
                                                 <img src="{{ asset($item->thumbnail) }}" alt="{{ $item->name }}" style="max-width: 100px; max-height: 70px;">
                                             @endif
                                         </td>
-                                        <td>{{ ($item->phone) ? '+84 ' . number_format($item->phone, 0, " ", " ") : NULL }}</td>
-                                        <td  class="text-center">
-                                            @if ($item->role_id == 1)
-                                                <li class="text-success" style="list-style: none"><i class="fas fa-circle"></i></li>
-                                            @else
-                                                <li  style="list-style: none"><i class="fas fa-circle"></i></li>
-                                            @endif
-                                        </td>
+                                        <td class="text-center">{{ $item->quantity }}</td>
+                                        <td  class="text-center">{{ $item->trademark->name }}</td>
                                         <td>{{ date("d-m-Y", strtotime($item->created_at) ) }}</td>
                                         <td>
                                             <a href="{{ route('product.edit', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>

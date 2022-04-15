@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Media;
 
 class DashBoardController extends Controller
 {
@@ -14,21 +15,28 @@ class DashBoardController extends Controller
 
     public function storeMedia(Request $request)
     {
-        $path = public_path('uploads/products');
+        $image = $request->file('file');
+        $profileImage = $image->getClientOriginalName();
+        // Define upload path
+        $destinationPath = public_path('/uploads/products/'); // upload path
+        $image->move($destinationPath,$profileImage);
+        
+        // Save In Database
+        $imagemodel= new Media();
+        $imagemodel->name= $profileImage;
+        $imagemodel->reference_id = $request->input('reference_id');
+        $imagemodel->save();
+        return response()->json(['success'=>$profileImage]);
+    }
 
-        if (!file_exists($path)) {
-            mkdir($path, 0777, true);
+    public function destroy(Request $request)
+    {
+        $filename =  $request->get('filename');
+        Media::where('name', $filename)->delete();
+        $path=public_path('/uploads/products/').$filename;
+        if (file_exists($path)) {
+            unlink($path);
         }
-    
-        $file = $request->file('file');
-    
-        $name = uniqid() . '_' . trim($file->getClientOriginalName());
-    
-        $file->move($path, $name);
-    
-        return response()->json([
-            'name'          => $name,
-            'original_name' => $file->getClientOriginalName(),
-        ]);
+        return $filename;  
     }
 }

@@ -31,6 +31,6 @@ Route::prefix('admin')->group(function () {
     Route::resource('type', TypeController::class);
     Route::resource('product', ProductController::class);
     Route::post('media', [DashBoardController::class, 'storeMedia'])->name('admin.storeMedia');
-    Route::post('remove-media', [DashBoardController::class, 'storeMedia'])->name('admin.destroyMedia');
+    Route::post('remove-media', [DashBoardController::class, 'destroy'])->name('admin.destroyMedia');
 });
 

@@ -2,11 +2,15 @@
 
 @section('title', isset($data) ? 'Sửa sản phẩm' : 'Thêm sản phẩm')
 
+@section('head')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+@endsection
+
 @section('content')
-{{-- @php
-var_dump();
-die;
-@endphp --}}
+@php
+    $tempcode = uniqid();
+@endphp
 <style>
     .dropzone {
         border-radius: 5px;
@@ -47,10 +51,12 @@ die;
                         @csrf
                         <div class="row">
                             <div class="col-md-3 border-end">
-                                <div class="mb-3 text-center input-group-sm">
+                                <div class="mb-3 input-group-sm">
                                     <label for="inputAvatar" class="form-label-sm">Hình đại diện</label>
                                     @if (isset($data) && !empty($data->thumbnail))
-                                        <img src="{{ asset($data->thumbnail) }}" class="img-thumbnail rounded" alt="Avatar">
+                                        <div class="thumbnail" style="width: 200px; height: 200px;">
+                                            <img src="{{ asset($data->thumbnail) }}" class="img-thumbnail rounded" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover">
+                                        </div>
                                     @endif
                                     <input type="file" class="form-control" id="inputAvatar" name="thumbnail" accept="image/*">
                                 </div>
@@ -67,25 +73,25 @@ die;
 
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="basic-price-import">Giá Nhập</span>
-                                    <input type="number" class="form-control" name="price_import" id="inputPriceImport" aria-describedby="basic-price-import" required>
+                                    <input type="number" class="form-control" name="price_import" id="inputPriceImport" value="{{ isset($data) ? $data->price_import : old('price_import') }}" aria-describedby="basic-price-import" required>
                                     <span class="input-group-text">.000 đ</span>
                                 </div>
 
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="basic-quantity">Số lượng</span>
-                                    <input type="number" class="form-control" name="quantity" id="inputQuantity" placeholder="0" aria-describedby="basic-quantity" required>
+                                    <input type="number" class="form-control" name="quantity" id="inputQuantity" value="{{ isset($data) ? $data->quantity : old('quantity') }}" placeholder="0" aria-describedby="basic-quantity" required>
                                     <span class="input-group-text">Cái</span>
                                 </div>
 
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="basic-price">Giá Bán</span>
-                                    <input type="number" class="form-control" name="price" id="inputPrice" aria-describedby="basic-price" required>
+                                    <input type="number" class="form-control" name="price" id="inputPrice" value="{{ isset($data) ? $data->price : old('price') }}" aria-describedby="basic-price" required>
                                     <span class="input-group-text">.000 đ</span>
                                 </div>
 
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="basic-promotion">Giá KM</span>
-                                    <input type="number" class="form-control" name="promotion" id="inputPromotion" aria-describedby="basic-promotion" required>
+                                    <input type="number" class="form-control" name="promotion" id="inputPromotion" value="{{ isset($data) ? $data->promotion : old('promotion') }}" aria-describedby="basic-promotion" required>
                                     <span class="input-group-text">.000 đ</span>
                                 </div>
 
@@ -93,7 +99,7 @@ die;
                                     <select class="form-select form-select-sm" name="color_id" aria-label=".form-select-sm color">
                                         <option selected>Màu sắc</option>
                                         @foreach ($colors as $color)
-                                            <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                            <option value="{{ $color->id }}" @if(isset($data) && $data->color_id == $color->id) selected @endif>{{ $color->name }}</option>
                                         @endforeach
                                       </select>
                                 </div>
@@ -102,7 +108,7 @@ die;
                                     <select class="form-select form-select-sm" name="trademark_id" aria-label=".form-select-sm trademark">
                                         <option selected>Thương hiệu</option>
                                         @foreach ($trademarks as $trademark)
-                                            <option value="{{ $trademark->id }}">{{ $trademark->name }}</option>
+                                            <option value="{{ $trademark->id }}"  @if(isset($data) && $data->trademark_id == $trademark->id) selected @endif>{{ $trademark->name }}</option>
                                         @endforeach
                                       </select>
                                 </div>
@@ -132,26 +138,9 @@ die;
                                     <textarea class="form-control" name="description" id="inputDescription" rows="3" style="height: 100px">{{ isset($data) ? $data->description :  old('description') }}</textarea>
                                 </div>
 
-                                <div class="mb-3 input-group-sm">
+                                <div class="mb-3 input-group-sm" id="dropzonebox">
                                     <label for="document">Hình ảnh</label>
-                                    <form method="post" action="{{ route('admin.storeMedia') }}" enctype="multipart/form-data" 
-                                    class="dropzone" id="dropzone">
-                                        @csrf
-                                        @if (isset($data))
-                                            @foreach ($data as $item)
-                                                <div class="dz-preview dz-processing dz-image-preview dz-complete"> 
-                                                    <div class="dz-image">
-                                                        <img src="{{ 'profile_images/' . $item->photo_name }}" alt="" style="width: 100%; height: 100%; object-fit: cover">
-                                                    </div> 
-                                                    <div class="dz-progress"> 
-                                                        <span class="dz-upload" data-dz-uploadprogress="" style="width: 100%;"></span> 
-                                                    </div> 
-                                                    <a class="dz-remove removeImage" href="javascript:undefined;" data-name="{{ $item->photo_name }}" data-value="{{ $item->id }}" data-dz-remove="">Remove file</a>
-                                                </div>
-                                            @endforeach
-                                        @endif
-  
-                                    </form>                 
+                                    <input type="hidden" name="reference_id" value="{{ isset($data) ? $data->id : $tempcode }}">
                                 </div>
 
                                 <div class="mb-3 input-group-sm">
@@ -163,17 +152,61 @@ die;
                             
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" >Submit</button>
                     </form>
                 </div>
             </div>
         </div>
     </main>
+    <form method="post" action="{{ route('admin.storeMedia') }}" enctype="multipart/form-data" class="dropzone" id="dropzone">
+        @csrf
+        <input type="hidden" name="reference_id" value="{{ isset($data) ? $data->id : $tempcode }}">
+        @if (isset($media))
+            @foreach ($media as $item)
+                <div class="dz-preview dz-processing dz-image-preview dz-complete"> 
+                    <div class="dz-image">
+                        <img src="{{ asset('uploads/products/' . $item->name) }}" alt="" style="width: 100%; height: 100%; object-fit: cover">
+                    </div> 
+                    <div class="dz-progress"> 
+                        <span class="dz-upload" data-dz-uploadprogress="" style="width: 100%;"></span> 
+                    </div> 
+                    <a class="dz-remove removeImage" href="javascript:undefined;" data-name="{{ $item->name }}" data-value="{{ $item->id }}" data-dz-remove="">Remove file</a>
+                </div>
+            @endforeach
+        @endif
+
+    </form>            
 @stop
 
 @section('scripts')
 <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
 <script type="text/javascript">
+    $(document).ready(function(){
+        $("#dropzone").appendTo("#dropzonebox");
+        $(document).on('click', '.removeImage', function(){
+            var name = $(this).data("name");
+            $.ajax({
+                headers: {
+                            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                        },
+                type: 'POST',
+                url: "{{ route('admin.destroyMedia') }}",
+                data: {
+                    filename: name,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function (data){
+                    console.log("File deleted successfully!!");
+                },
+                error: function(e) {
+                    console.log(e);
+                }
+            });    
+            $(this).parent().remove();
+        })
+    })
+
     Dropzone.options.dropzone =
      {
         maxFilesize: 12,
@@ -193,7 +226,7 @@ die;
                             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                         },
                 type: 'POST',
-                url: '{{ route('admin.destroyMedia') }}',
+                url: "{{ route('admin.destroyMedia') }}",
                 data: {
                     filename: name,
                     _token: "{{ csrf_token() }}"
@@ -217,30 +250,13 @@ die;
            return false;
         }
     };
-
-    $(document).ready(function(){
-        $(document).on('click', '.removeImage', function(){
-            var name = $(this).data("name");
-            $.ajax({
-                headers: {
-                            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                        },
-                type: 'POST',
-                url: '{{ route('admin.destroyMedia') }}',
-                data: {
-                    filename: name,
-                    _token: "{{ csrf_token() }}"
-                },
-                success: function (data){
-                    console.log("File deleted successfully!!");
-                },
-                error: function(e) {
-                    console.log(e);
-                }
-            });    
-            $(this).parent().remove();
-        })
-    })
 </script>
+@if (isset($media) && $media->count() > 0)
+    <script type="text/javascript">
+            $(document).ready(function(){
+                $(".dz-message").css("display", "none");
+            })
+    </script>
+@endif
 @stop
 

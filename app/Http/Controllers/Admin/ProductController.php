@@ -9,6 +9,7 @@ use App\Models\Color;
 use App\Models\Trademark;
 use App\Models\Type;
 use App\FileHelper;
+use App\Models\Media;
 
 class ProductController extends Controller
 {
@@ -48,8 +49,6 @@ class ProductController extends Controller
     {
         $data = $request->input();
 
-        $data['images'] = json_encode($request->input('images'));
-
         if($request->input('hot')){
             $data['hot'] = 1;
         }
@@ -67,18 +66,17 @@ class ProductController extends Controller
         }
         
         $data['code'] = $request->input('trademark_id') . $request->input('color') . uniqid();
-
-        
-
+  
         $product = Product::create($data);
+
+        $media = Media::where('reference_id', $request->input('reference_id'))->update([
+            'reference_id'   => $product->id,
+            'reference_type' =>  get_class($product),
+        ]);
 
         $types = $request->input('type');
         if(!empty($types) && is_array($types)){
             $product->types()->sync($types);
-        }
-
-        foreach ($request->input('images', []) as $file) {
-            $product->addMedia(public_path('uploads/products/' . $file))->toMediaCollection('images');
         }
 
         return redirect(route('product.index'))->with('alert_success', 'Thêm sản phẩm thành công!');
@@ -104,12 +102,12 @@ class ProductController extends Controller
     public function edit($id)
     {
         $data = Product::with('types')->find($id);
-
+        $media = Media::where('reference_id', $id)->where('reference_type', get_class($data))->get();
         $types = Type::orderBy('name', 'asc')->get();
         $colors = Color::orderBy('name', 'asc')->get();
         $trademarks = Trademark::orderBy('name', 'asc')->get();
 
-        return view('admin.views.product.form')->with(compact('types', 'colors', 'trademarks', 'data'));
+        return view('admin.views.product.form')->with(compact('types', 'colors', 'trademarks', 'data', 'media'));
     }
 
     /**
@@ -119,9 +117,37 @@ class ProductController extends Controller
      * @param  \App\Models\odel  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->input();
+        $product = Product::find($id);
+
+        if($request->input('hot')){
+            $data['hot'] = 1;
+        }
+
+        if($request->input('new')){
+            $data['new'] = 1;
+        }
+
+        if($request->hasFile('thumbnail')){
+            $img_file_name = FileHelper::saveImage($request->file('thumbnail'), 'uploads/products');
+
+            if($product->thumbnail){
+                unlink($product->thumbnail);
+            }
+
+            $data['thumbnail'] = $img_file_name;
+        }
+
+        $product->fill($data);
+        $product->save();
+
+        if(!empty($request->input('type')) && is_array($request->input('type'))){
+            $product->types()->sync($request->input('type'));
+        }
+
+        return redirect(route('product.index'))->with('alert_success', 'Sửa sản phẩm thành công!');
     }
 
     /**
@@ -130,8 +156,31 @@ class ProductController extends Controller
      * @param  \App\Models\odel  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        unlink($product->thumbnail);
+
+        $product->types()->sync([]);
+        $media = Media::where([
+            'reference_id' => $id,
+            'reference_type' => get_class($product),
+        ])->get();
+
+        if($media->count() > 0){
+            foreach ($media as $item) {
+                $path= public_path('/uploads/products/').$item->name;
+    
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+    
+                Media::find($item->id)->delete();
+            }
+        }
+       
+        $product->delete();
+
+        return redirect(route('product.index'))->with('alert_success', 'Xóa thành công!');
     }
 }
