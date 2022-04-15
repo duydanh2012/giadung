@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\FileHelper;
+use App\Http\Requests\ChangePassRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -117,5 +120,25 @@ class UserController extends Controller
         User::destroy($id);
 
         return redirect(route('user.index'))->with('alert_success', 'Xóa thành công!');
+    }
+
+    public function changePass()
+    {
+        return view('admin.views.user.changepass');
+    }
+
+    public function postChangePass(ChangePassRequest $request)
+    {
+        if(Hash::check($request->input('password'), Auth::user()->password)) {
+            if ($request->input('password') !== $request->input('password_new')) {
+                User::find(Auth::user()->id)->update(['password'=> Hash::make($request->input('password_new'))]);
+
+                return redirect()->back()->with('alert_success','Thay Đổi Mật Khẩu Thành Công!');
+            }else {
+                return redirect()->back()->with('alert_error','Mật Khẩu Mới Phải Khác Mật Khẩu Cũ !');
+            }
+        }else{
+            return redirect()->back()->with('alert_error','Sai Mật Khẩu!');
+        }
     }
 }

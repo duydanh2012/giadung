@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TrademarkController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,20 @@ use App\Http\Controllers\Admin\TypeController;
 
 Route::get('/', function () {
     return view('welcome');
+})->name('public.index');
+
+Route::group(['middleware' => 'checkLogin'], function() {
+    Route::get('dang-nhap',      [AuthController::class, 'login'])       ->name('login');
+    Route::post('dang-nhap',     [AuthController::class, 'auth'])        ->name('auth');
+    Route::get('quen-mat-khau',  [AuthController::class, 'forget'])      ->name('forget');
+    Route::post('quen-mat-khau', [AuthController::class, 'postForget'])  ->name('postForget');
+    Route::get('dang-ky',        [AuthController::class, 'register'])    ->name('register');
+    Route::post('dang-ky',       [AuthController::class, 'postRegister'])->name('postRegister');
 });
 
-Route::prefix('admin')->group(function () {
+Route::get('dang-xuat', [AuthController::class, 'logout'])->name('logout');
+
+Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admin'], function() {
     Route::get('/', [DashBoardController::class, 'index'])->name('admin.dashboard');
     Route::resource('user', UserController::class);
     Route::resource('trademark', TrademarkController::class);
@@ -32,5 +44,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('product', ProductController::class);
     Route::post('media', [DashBoardController::class, 'storeMedia'])->name('admin.storeMedia');
     Route::post('remove-media', [DashBoardController::class, 'destroy'])->name('admin.destroyMedia');
+    Route::get('thay-doi-mat-khau', [UserController::class, 'changePass'])->name('user.changepass');
+    Route::post('thay-doi-mat-khau', [UserController::class, 'postChangePass'])->name('user.postchangepass');
 });
 
