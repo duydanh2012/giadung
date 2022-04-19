@@ -20,10 +20,10 @@ class AuthController extends Controller
     {
         if (Auth::attempt(['email' => $request->input('email'), 'password' =>$request->input('password')])) {
 
-            if(Auth::user()->admin == 0){
+            if(Auth::user()->role_id == 0){
                 return redirect(route('public.index'));
-            }elseif(Auth::user()->admin == 1){
-                return redirect(route('dashboard'));
+            }elseif(Auth::user()->role_id == 1){
+                return redirect(route('admin.dashboard'));
             }
         }else {
             return redirect(route('login'))->with('alert_error','Sai Tài Khoản Hoặc Mật Khẩu!');

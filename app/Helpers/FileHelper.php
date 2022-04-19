@@ -2,7 +2,8 @@
 
 namespace App;
 
-use Illuminate\Support\Str;;
+use Illuminate\Support\Str;
+use App\Models\Type;
 
 class FileHelper{
     public static function saveImage($img, string $folder = '')

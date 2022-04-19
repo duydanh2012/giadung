@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\TrademarkController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\PublicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +22,6 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('public.index');
 
 Route::group(['middleware' => 'checkLogin'], function() {
     Route::get('dang-nhap',      [AuthController::class, 'login'])       ->name('login');
@@ -48,3 +47,8 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admin'], function(
     Route::post('thay-doi-mat-khau', [UserController::class, 'postChangePass'])->name('user.postchangepass');
 });
 
+Route::get('/', [PublicController::class, 'index'])->name('public.index');
+Route::get('loai-san-pham/{slug}', [PublicController::class, 'type'])->name('public.type');
+Route::get('san-pham/{code}', [PublicController::class, 'productDetail'])->name('public.productDetail');
+Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
+Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
