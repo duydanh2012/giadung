@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Media;
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Type;
 
 class PublicController extends Controller
 {
@@ -13,11 +16,21 @@ class PublicController extends Controller
 
     public function type($slug)
     {
-        # code...
+        $datas = Type::where('slug', $slug)->get();
+
     }
 
-    public function prductDetail($code)
+    public function productDetail($code)
     {
-        # code...
+        $data = Product::where('code', $code)
+                        ->with('trademark', 'types')
+                        ->first();               
+
+        $medias = Media::where([
+            'reference_id' => $data->id,
+            'reference_type' => get_class($data),
+        ])->get();
+
+        return view('public.views.product-detail')->with(compact('data', 'medias'));
     }
 }

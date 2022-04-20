@@ -42,3 +42,14 @@ if (!function_exists('getProductNew')) {
         return $data;                
     }
 }
+
+if (!function_exists('getProductRelase')) {
+    function getProductRelase($code, int $limit = 4)
+    {
+        $product = Product::where('code', $code)->first()->trademark_id;
+
+        $data = Product::where('trademark_id', $product)->get();
+        
+        return $data;                
+    }
+}

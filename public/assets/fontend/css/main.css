@@ -219,6 +219,12 @@ a#scrollUp i{
 }
 
 
+.navbar{
+  min-height: 0px;
+  margin-bottom: 0px;
+  padding: 0rem;
+}
+
 .header-bottom {
   padding-bottom: 30px;
   padding-top: 30px;
@@ -1256,16 +1262,15 @@ h2.title {
   margin-top: 18px;
 }
 
-.product-information span span {
+.price {
   color: #FE980F;
-  float: left;
   font-family: 'Roboto', sans-serif;
   font-size: 30px;
   font-weight: 700;
   margin-right: 20px;
   margin-top: 0px;
 }
-.product-information span input {
+.quantity input {
   border: 1px solid #DEDEDC;
   color: #696763;
   font-family: 'Roboto', sans-serif;
@@ -1277,7 +1282,7 @@ h2.title {
   width: 50px;
 }
 
-.product-information span label {
+.quantity label {
   color: #696763;
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
@@ -1314,7 +1319,7 @@ h2.title {
 }
 
 
-#reviews ul {
+#details ul {
   background: #FFFFFF;
   border: 0 none;
   list-style: none outside none;
@@ -1322,11 +1327,11 @@ h2.title {
   padding: 0;
 }
 
-#reviews  ul  li {
+#details  ul  li {
 	display:inline-block;
 }
 
-#reviews ul li a {
+#details ul li a {
   color: #696763;
   display: block;
   font-family: 'Roboto', sans-serif;
@@ -1334,25 +1339,25 @@ h2.title {
   padding-right: 15px;
 }
 
-#reviews ul li a i{
+#details ul li a i{
 	color:#FE980F;
 	padding-right:8px;
 }
 
-#reviews ul li a:hover{
+#details ul li a:hover{
 	background:#fff;
 	color:#FE980F;
 }
 
-#reviews p{
+#details p{
 	color:#363432;
 }
 
-#reviews  form span {
+#details  form span {
   display: block;
 }
 
-#reviews form span input {
+#details form span input {
   background:#F0F0E9;
   border: 0 none;
   color: #A6A6A1;
@@ -1362,11 +1367,11 @@ h2.title {
   padding: 8px;
   width: 48%;
 }
-#reviews form span input:last-child {
+#details form span input:last-child {
   margin-left: 3%;
 }
 
-#reviews textarea {
+#details textarea {
   background: #F0F0E9;
   border: medium none;
   color: #A6A6A1;
@@ -1380,7 +1385,7 @@ h2.title {
   width: 99.5%;
 }
 
-#reviews button {
+#details button {
   background: #FE980F;
   border: 0 none;
   border-radius: 0;

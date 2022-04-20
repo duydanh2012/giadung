@@ -50,5 +50,11 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admin'], function(
 Route::get('/', [PublicController::class, 'index'])->name('public.index');
 Route::get('loai-san-pham/{slug}', [PublicController::class, 'type'])->name('public.type');
 Route::get('san-pham/{code}', [PublicController::class, 'productDetail'])->name('public.productDetail');
-Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
-Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
+
+Route::group(['prefix' => 'cart'], function() {
+    Route::get('/', [CartController::class, 'cartList'])->name('cart.list');
+    Route::post('/', [CartController::class, 'addToCart'])->name('cart.store');
+    Route::put('/', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/', [CartController::class, 'delete'])->name('cart.delete');    
+    Route::get('clear', [CartController::class, 'clear'])->name('cart.clear');    
+});

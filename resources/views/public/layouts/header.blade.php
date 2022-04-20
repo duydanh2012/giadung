@@ -14,12 +14,12 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="social-icons pull-right">
+                    <div class="navbar navbar-expand-lg social-icons pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="javascipt:void(0);"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            <li><a href="javascipt:void(0);"><i class="fa-brands fa-twitter"></i></a></li>
-                            <li><a href="javascipt:void(0);"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                            <li><a href="javascipt:void(0);"><i class="fa-brands fa-google-plus-g"></i></a></li>
+                            <li class="nav-item"><a class="nav-link" href="javascipt:void(0);"><i class="fa-brands fa-facebook-f"></i></a></li>
+                            <li class="nav-item"><a class="nav-link" href="javascipt:void(0);"><i class="fa-brands fa-twitter"></i></a></li>
+                            <li class="nav-item"><a class="nav-link" href="javascipt:void(0);"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                            <li class="nav-item"><a class="nav-link" href="javascipt:void(0);"><i class="fa-brands fa-google-plus-g"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -35,15 +35,15 @@
                         <a href="{{ route('public.index') }}"><img src="{{ asset('assets/fontend/images/logo.png') }}" alt="" /></a>
                     </div>
                 </div>
-                <div class="col-sm-8">
-                    <div class="shop-menu pull-right">
+                <div class="col-sm-8 ">
+                    <div class="navbar navbar-expand-lg shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="{{ route('cart.list') }}"><i class="fa fa-shopping-cart"></i> Cart {{ Cart::getTotalQuantity()}}</a></li>
+                            <li class="nav-item"><a href="{{ route('cart.list') }}" class="nav-link"><i class="fa fa-shopping-cart"></i> Cart {{ Cart::getTotalQuantity()}}</a></li>
                             @if (Auth::check())
-                                <li><a href="#"><i class="fa fa-user"></i> Tài khoản</a></li>
-                                <li><a href="{{ route('logout') }}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-user"></i> Tài khoản</a></li>
+                                <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
                             @else
-                                <li><a href="{{ route('login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                                <li class="nav-item"><a href="{{ route('login') }}" class="nav-link"><i class="fa fa-lock"></i> Login</a></li>
                             @endif
                         </ul>
                     </div>

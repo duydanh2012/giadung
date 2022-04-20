@@ -28,3 +28,32 @@ $(document).ready(function(){
 		});
 	});
 });
+
+if ($('.slideManager').length) {
+	var topItem = $('.slideManager').offset().top - heightStart;
+
+	if (scrollTop >= topItem)
+		$('.slideManager:not(.slick-slider)').slick({
+			autoplay: true,
+			pauseOnHover: false,
+			pauseOnFocus: false,
+			useTransform: false,
+			slidesToShow: 3,
+			swipeToSlide: true,
+			lazyLoad: 'progressive',
+			prevArrow: btnLeftSlideType2,
+			nextArrow: btnRightSlideType2,
+			useTransform: false,
+			responsive: [{
+				breakpoint: 992,
+				settings: {
+					slidesToShow: 3,
+				}
+			}, {
+				breakpoint: 576,
+				settings: {
+					slidesToShow: 2,
+				}
+			}]
+		});
+}

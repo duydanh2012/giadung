@@ -52,5 +52,9 @@
 			</div>
 		</div>
 	</section>
-@endsection
+@stop
+
+@section('scripts')
+	<script src="{{ asset('assets/js/cart.js') }}"></script>
+@stop
 

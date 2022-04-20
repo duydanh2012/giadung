@@ -15,10 +15,10 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="{{ $item['thumbnail'] }}" alt="" />
+                                        <img src="{{ asset($item['thumbnail']) }}" alt="" style="width: 100px; max-height: 120px" />
                                         <h2>{{ number_format($item['price'],0,",",".") }}.000 ₫</h2>
                                         <p ><a href="{{ route('public.productDetail', $item['code']) }}" class="text-secondary">{{ $item['name'] }}</a></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                        <a href="javascript:void(0);" data-href="{{ route('cart.store') }}" data-value="{{ $item['code'] }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                                     </div>
                                 </div>
                             </div>

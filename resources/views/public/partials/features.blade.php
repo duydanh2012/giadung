@@ -13,17 +13,13 @@
                             <img src="{{ $item->thumbnail }}" alt="" />
                             <h2>{{number_format($item->price,0,",",".")}}.000 ₫</h2>
                             <p ><a href="{{ route('public.productDetail', $item->code) }}" class="text-secondary">{{ $item->name }}</a></p>
-                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                            <a href="javascript:void(0);" data-href="{{ route('cart.store') }}" data-value="{{ $item->code }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                         </div>
                         <div class="product-overlay">
                             <div class="overlay-content">
                                 <h2>{{number_format($item->price,0,",",".")}}.000 ₫</h2>
                                 <p><a href="{{ route('public.productDetail', $item->code) }}">{{ $item->name }}</a></p>
-                                <form action="{{ route('cart.store') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" value="{{ $item->code }}" name="code">
-                                    <button class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</button>
-                                </form>
+                                <a href="javascript:void(0);" data-href="{{ route('cart.store') }}" data-value="{{ $item->code }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                             </div>
                         </div>
                         @if ($item->new == 1)
