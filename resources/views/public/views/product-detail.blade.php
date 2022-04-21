@@ -48,7 +48,7 @@
                                         <img class="d-block w-100 h-100" src="{{ asset($data->thumbnail) }}" alt="" />
                                     </div>
                                     @foreach ($medias as $item)
-                                        <div class="carousel-item">
+                                        <div class="carousel-item" style="height: 380px">
                                             <img class="d-block w-100 mh-100" src="{{ asset('uploads/products/' . $item->name) }}" alt="First slide" >
                                         </div>
                                     @endforeach   

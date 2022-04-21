@@ -16,8 +16,16 @@ class PublicController extends Controller
 
     public function type($slug)
     {
-        $datas = Type::where('slug', $slug)->get();
+        $type = Type::where([
+            'slug' => $slug
+        ])->first();  
 
+        $datas = Product::join('type_product', 'type_product.product_id', '=', 'products.id')
+                            ->where([
+                                'type_product.type_id' => $type->id
+                            ])->get();
+                                              
+        return view('public.views.type')->with(compact('datas', 'type'));
     }
 
     public function productDetail($code)

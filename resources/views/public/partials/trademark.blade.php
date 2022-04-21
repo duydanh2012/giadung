@@ -21,7 +21,7 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="{{ $product->thumbnail }}" alt="" style="width: 100px; height: 120px"/>
+                                        <img src="{{ asset($product->thumbnail) }}" alt="" style="width: 100px; height: 120px"/>
                                         <h2>{{ number_format($product->price,0,",",".") }}.000 ₫</h2>
                                         <p ><a href="{{ route('public.productDetail', $product->code) }}" class="text-secondary">{{ $product->name }}</a></p>
                                         <a href="javascript:void(0);" data-href="{{ route('cart.store') }}" data-value="{{ $product->code }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>

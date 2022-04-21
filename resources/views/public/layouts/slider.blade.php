@@ -6,14 +6,13 @@
                     <ol class="carousel-indicators">
                         <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
                         <li data-target="#slider-carousel" data-slide-to="1"></li>
-                        <li data-target="#slider-carousel" data-slide-to="2"></li>
                     </ol>
                     
                     <div class="carousel-inner">
-                        <div class="item active">
+                        <div class="carousel-item active">
                             <img src="{{ asset('assets/fontend/images/slider_1.png') }}" class="girl img-responsive center" alt="" />
                         </div>
-                        <div class="item">
+                        <div class="carousel-item">
                             <img src="{{ asset('assets/fontend/images/slider_2.png') }}" class="girl img-responsive center" alt="" />
                         </div>
                     
