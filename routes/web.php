@@ -50,6 +50,8 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admin'], function(
 Route::get('/', [PublicController::class, 'index'])->name('public.index');
 Route::get('loai-san-pham/{slug}', [PublicController::class, 'type'])->name('public.type');
 Route::get('san-pham/{code}', [PublicController::class, 'productDetail'])->name('public.productDetail');
+Route::get('thanh-toan', [PublicController::class, 'payment'])->name('public.payment');
+Route::post('thanh-toan', [PublicController::class, 'postPayment'])->name('public.postPayment');
 
 Route::group(['prefix' => 'cart'], function() {
     Route::get('/', [CartController::class, 'cartList'])->name('cart.list');

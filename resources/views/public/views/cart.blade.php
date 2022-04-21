@@ -60,6 +60,7 @@
                 </tbody>
             </table>
         </div>
+        <a class="btn btn-primary float-right mb-5" href="{{ route('public.payment') }}" role="button">Tiến hành thanh toán</a>
     </div>
 </section> <!--/#cart_items-->
 @stop

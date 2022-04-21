@@ -12,7 +12,7 @@ function addCommas(nStr)
     x2 = x.length > 1 ? '.' + x[1] : '';
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
     }
     return x1 + x2;
 }
@@ -122,3 +122,16 @@ $(document).ready(function(){
         });
     })
 });
+
+$(document).ready(function(){
+    let totalCart = $('#totalCart').data('value');
+    let ship = $('#ship').data('value');
+    let promotion = $('#promotion').data('value');
+    const total = totalCart + ship - promotion;
+    $('#formTotal').val(total);
+    $('#total').text(addCommas(total * 1000) + ' ₫'); 
+
+    $(document).on('click', '.applyPromotion', function(){
+        alert('Chức năng hiện chưa hoàn thiện!');
+    })
+})
