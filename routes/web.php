@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\ColorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\Admin\ProductController;
@@ -39,13 +38,14 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admin'], function(
     Route::get('/', [DashBoardController::class, 'index'])->name('admin.dashboard');
     Route::resource('user', UserController::class);
     Route::resource('trademark', TrademarkController::class);
-    Route::resource('color', ColorController::class);
     Route::resource('type', TypeController::class);
     Route::resource('product', ProductController::class);
     Route::post('media', [DashBoardController::class, 'storeMedia'])->name('admin.storeMedia');
     Route::post('remove-media', [DashBoardController::class, 'destroy'])->name('admin.destroyMedia');
     Route::get('thay-doi-mat-khau', [UserController::class, 'changePass'])->name('user.changepass');
     Route::post('thay-doi-mat-khau', [UserController::class, 'postChangePass'])->name('user.postchangepass');
+    Route::get('thong-tin-don-hang/{code}', [DashBoardController::class, 'detailBill'])->name('admin.bill.detail');
+    Route::get('thong-ke-don', [DashBoardController::class, 'statistical'])->name('admin.statistical');
 });
 
 Route::get('/', [PublicController::class, 'index'])->name('public.index');

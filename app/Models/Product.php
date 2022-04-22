@@ -26,15 +26,9 @@ class Product extends Model
         'thumbnail',
         'images',
         'quantity',
-        'color_id',
         'trademark_id',
         'price_import',
     ];
-
-    public function color(): BelongsTo
-    {
-    	return $this->belongsTo(Color::class, 'color_id', 'id');
-    }
 
     public function trademark(): BelongsTo
     {

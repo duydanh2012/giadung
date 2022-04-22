@@ -13,11 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('colors', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
-        });
 
         Schema::create('products', function (Blueprint $table) {
             $table->id();
@@ -32,7 +27,6 @@ return new class extends Migration
             $table->string('thumbnail', 400)->nullable();
             $table->string('images', 400)->nullable();
             $table->tinyInteger('quantity')->default(0);
-            $table->integer('color_id')->unsigned()->references('id')->on('colors')->onDelete('cascade');
             $table->integer('trademark_id')->unsigned()->references('id')->on('trademarks')->onDelete('cascade');
             $table->timestamps();
         });
@@ -47,6 +41,5 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('products');
-        Schema::dropIfExists('colors');
     }
 };

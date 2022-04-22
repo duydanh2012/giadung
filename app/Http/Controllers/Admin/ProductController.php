@@ -33,10 +33,9 @@ class ProductController extends Controller
     public function create()
     {
         $types = Type::orderBy('name', 'asc')->get();
-        $colors = Color::orderBy('name', 'asc')->get();
         $trademarks = Trademark::orderBy('name', 'asc')->get();
 
-        return view('admin.views.product.form')->with(compact('types', 'colors', 'trademarks'));
+        return view('admin.views.product.form')->with(compact('types', 'trademarks'));
     }
 
     /**
@@ -104,10 +103,9 @@ class ProductController extends Controller
         $data = Product::with('types')->find($id);
         $media = Media::where('reference_id', $id)->where('reference_type', get_class($data))->get();
         $types = Type::orderBy('name', 'asc')->get();
-        $colors = Color::orderBy('name', 'asc')->get();
         $trademarks = Trademark::orderBy('name', 'asc')->get();
 
-        return view('admin.views.product.form')->with(compact('types', 'colors', 'trademarks', 'data', 'media'));
+        return view('admin.views.product.form')->with(compact('types', 'trademarks', 'data', 'media'));
     }
 
     /**

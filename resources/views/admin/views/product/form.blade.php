@@ -96,15 +96,6 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <select class="form-select form-select-sm" name="color_id" aria-label=".form-select-sm color">
-                                        <option selected>Màu sắc</option>
-                                        @foreach ($colors as $color)
-                                            <option value="{{ $color->id }}" @if(isset($data) && $data->color_id == $color->id) selected @endif>{{ $color->name }}</option>
-                                        @endforeach
-                                      </select>
-                                </div>
-
-                                <div class="mb-3">
                                     <select class="form-select form-select-sm" name="trademark_id" aria-label=".form-select-sm trademark">
                                         <option selected>Thương hiệu</option>
                                         @foreach ($trademarks as $trademark)

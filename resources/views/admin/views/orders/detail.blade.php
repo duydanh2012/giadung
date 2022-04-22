@@ -1,14 +1,14 @@
 @extends('admin.index')
 
-@section('title', 'Màu sắc')
+@section('title', 'Thông tin đơn hàng' . $bill->code)
 
 @section('content')
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Màu sắc</h1>
+            <h1 class="mt-4">Thông tin đơn hàng</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Màu sắc</li>
+                <li class="breadcrumb-item active">Thông tin đơn hàng</li>
             </ol>
             @if (session('alert_success'))
                 <div class="alert alert-success">
@@ -18,43 +18,63 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Bảng danh sách màu sắc
+                    Bảng chi tiết đơn hàng {{ $bill->code }}
+                </div>
+                <div class="card-body row">
+                    <div class="col-md-6">
+                        <p><i><b>Người đặt hàng:</b> {{ $bill->user->name }}</i></p>
+                        <p><i><b>Người nhận:</b> {{ $bill->name }}</i></p>
+                        <p><i><b>Số điện thoại:</b> {{ $bill->phone }}</i></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><i><b>Ngày đặt hàng:</b> {{ date("d-m-Y", strtotime($bill->created_at) ) }}</i></p>
+                        <p><i><b>Ngày nhận hàng:</b> 
+                            @if(!empty($bill->delivery_date))
+                                {{ date("d-m-Y", strtotime($bill->delivery_date) ) }}
+                            @else
+                                <span class="text-warning">Đơn đang vận chuyển</span>
+                            @endif
+                         </i></p>
+                        <p><i><b>Địa chỉ:</b> {{ $bill->address }}</i></p>
+                    </div>
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th class="text-center">ID</th>
-                                <th>Tên màu sắc</th>
-                                <th>Ngày tạo</th>
-                                <th></th>
+                                <th>Tên</th>
+                                <th class="text-center">Hình</th>
+                                <th class="text-center">Giá</th>
+                                <th class="text-center">Số lượng</th>
+                                <th class="text-center">Tổng tiền</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th class="text-center">ID</th>
-                                <th>Tên màu sắc</th>
-                                <th>Ngày tạo</th>
-                                <th></th>
+                                <th>Tên</th>
+                                <th class="text-center">Hình</th>
+                                <th class="text-center">Giá</th>
+                                <th class="text-center">Số lượng</th>
+                                <th class="text-center">Tổng tiền</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @if ($datas->count() <= 0)
+                            @if ($data->count() <= 0)
                                 <tr>
                                     <td colspan="4" class="text-center">Không có dữ liệu</td>
                                 </tr>
                             @else
-                                @foreach ($datas as $item)
+                                @foreach ($data as $item)
                                     <tr>
-                                        <td  class="text-center">{{ $item->id }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ date("d-m-Y", strtotime($item->created_at) ) }}</td>
-                                        <td>
-                                            <a href="{{ route('color.edit', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            <button type="button" data-href="{{ route('color.destroy', $item->id) }}" class="btn btn-danger btn-sm btn-delete" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
+                                        <td>{{ $item->product->name }}</td>
+                                        <td class="text-center">
+                                            @if ($item->product->thumbnail)
+                                                <img src="{{ asset($item->product->thumbnail) }}" alt="{{ $item->name }}" style="max-width: 100px; max-height: 70px;">
+                                            @endif
                                         </td>
+                                        <td class="text-center">{{ number_format($item->price, 0, ",", ".") }}.000 ₫</td>
+                                        <td class="text-center">{{ $item->number }}</td>
+                                        <td class="text-center">{{ number_format($item->price * $item->number, 0, ",", ".") }}.000 ₫</td>
                                     </tr>
                                 @endforeach
                             @endif
@@ -64,7 +84,7 @@
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Xóa màu sắc</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">Xóa người dùng</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
