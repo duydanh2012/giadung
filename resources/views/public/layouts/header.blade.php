@@ -40,7 +40,7 @@
                         <ul class="nav navbar-nav">
                             <li class="nav-item"><a href="{{ route('cart.list') }}" class="nav-link"><i class="fa fa-shopping-cart"></i> Cart {{ Cart::getTotalQuantity()}}</a></li>
                             @if (Auth::check())
-                                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-user"></i> Tài khoản</a></li>
+                                <li class="nav-item"><a href="{{ route('public.user.index') }}" class="nav-link"><i class="fa fa-user"></i> Tài khoản</a></li>
                                 <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
                             @else
                                 <li class="nav-item"><a href="{{ route('login') }}" class="nav-link"><i class="fa fa-lock"></i> Login</a></li>
@@ -67,6 +67,7 @@
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
                             <li><a href="{{ route('public.index') }}" class="active">Trang Chủ</a></li>
+                            <li><a href="{{ route('public.list') }}">Sản phẩm</a></li>
                             <li class="dropdown"><a href="#">Danh mục<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     @foreach ($types as $item)
@@ -74,14 +75,13 @@
                                     @endforeach
                                 </ul>
                             </li> 
-                            <li><a href="contact-us.html">Contact</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <form action="#" method="POST" id="search-form">
-                            <input type="text" placeholder="Search"/>
+                        <form action="{{ route('public.search') }}" method="get" id="search-form">
+                            <input type="text" name="q" placeholder="Search"/>
                             <button type="submit" style="display: none;">Tìm kiếm</button>
                         </form>
                     </div>

@@ -53,3 +53,12 @@ if (!function_exists('getProductRelase')) {
         return $data;                
     }
 }
+
+if (!function_exists('getAllProduct')) {
+    function getAllProduct(int $pagina = 9)
+    {
+        $data = Product::paginate($pagina);
+        
+        return $data;                
+    }
+}

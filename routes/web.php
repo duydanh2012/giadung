@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\UserController as ControllersUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,14 +50,26 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admin'], function(
 
 Route::get('/', [PublicController::class, 'index'])->name('public.index');
 Route::get('loai-san-pham/{slug}', [PublicController::class, 'type'])->name('public.type');
+Route::get('san-pham/', [PublicController::class, 'listProduct'])->name('public.list');
 Route::get('san-pham/{code}', [PublicController::class, 'productDetail'])->name('public.productDetail');
 Route::get('thanh-toan', [PublicController::class, 'payment'])->name('public.payment');
 Route::post('thanh-toan', [PublicController::class, 'postPayment'])->name('public.postPayment');
+Route::get('tim-kiem', [PublicController::class, 'search'])->name('public.search');
+
+Route::group(['prefix' => 'trang-ca-nhan'], function() {
+    Route::get('/', [ControllersUserController::class, 'index'])->name('public.user.index');  
+    Route::put('/', [ControllersUserController::class, 'update'])->name('public.user.update'); 
+    Route::get('thay-doi-mat-khau', [ControllersUserController::class, 'changePass'])->name('public.user.changePass');  
+    Route::post('thay-doi-mat-khau', [ControllersUserController::class, 'postChangePass'])->name('public.user.postChangePass');  
+    Route::get('don-da-dat-hang', [ControllersUserController::class, 'listOrdered'])->name('public.user.list'); 
+    Route::get('don-da-dat-hang/{code}', [ControllersUserController::class, 'detailBill'])->name('public.user.detailbill');
+    Route::get('nhan-hang/{code}', [ControllersUserController::class, 'confirm'])->name('public.user.confirm');
+});
 
 Route::group(['prefix' => 'cart'], function() {
-    Route::get('/', [CartController::class, 'cartList'])->name('cart.list');
-    Route::post('/', [CartController::class, 'addToCart'])->name('cart.store');
-    Route::put('/', [CartController::class, 'update'])->name('cart.update');
-    Route::delete('/', [CartController::class, 'delete'])->name('cart.delete');    
-    Route::get('clear', [CartController::class, 'clear'])->name('cart.clear');    
+    Route::get('/',     [CartController::class, 'cartList']) ->name('cart.list');
+    Route::post('/',    [CartController::class, 'addToCart'])->name('cart.store');
+    Route::put('/',     [CartController::class, 'update'])   ->name('cart.update');
+    Route::delete('/',  [CartController::class, 'delete'])   ->name('cart.delete');    
+    Route::get('clear', [CartController::class, 'clear'])    ->name('cart.clear');    
 });

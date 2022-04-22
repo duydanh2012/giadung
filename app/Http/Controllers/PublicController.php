@@ -18,6 +18,11 @@ class PublicController extends Controller
         return view('public.views.homepage');
     }
 
+    public function listProduct()
+    {
+        return view('public.views.list');
+    }
+
     public function type($slug)
     {
         $type = Type::where([
@@ -27,7 +32,7 @@ class PublicController extends Controller
         $datas = Product::join('type_product', 'type_product.product_id', '=', 'products.id')
                             ->where([
                                 'type_product.type_id' => $type->id
-                            ])->get();
+                            ])->paginate(9);
                                               
         return view('public.views.type')->with(compact('datas', 'type'));
     }
@@ -85,5 +90,17 @@ class PublicController extends Controller
         \Cart::clear();
 
         return view('public.views.success');
+    }
+
+    public function search(Request $request)
+    {
+        $rq = $request->input('q');
+
+        $product = Product::where('id', 'LIKE', '%' . $rq . '%')
+                            ->orWhere('code', 'LIKE', '%' . $rq . '%')
+                            ->orWhere('name', 'LIKE', '%' . $rq . '%')
+                            ->paginate(9);
+
+        return view('public.views.search')->with(compact('product'));                    
     }
 }

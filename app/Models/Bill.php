@@ -23,6 +23,7 @@ class Bill extends Model
         'paymentMethod',
         'phone',
         'user_id',
+        'delivery_date',
     ];
 
     public function user(): BelongsTo
