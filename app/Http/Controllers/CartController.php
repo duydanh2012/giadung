@@ -19,6 +19,9 @@ class CartController extends Controller
     {
         // dd($request->input('code'));
         $product = Product::where('code', $request->input('code'))->first();
+        if(!empty($request->input('quantity')) && ($product->quantity <  $request->input('quantity'))){
+            return response()->json('Số lượng quá lớn, đề nghị nhỏ hơn hoặc bằng ' . $product->quantity, Response::HTTP_OK);
+        }
 
         \Cart::add([
             'id'   => $product->id,
@@ -32,7 +35,7 @@ class CartController extends Controller
         ]);
         // session()->flash('success', 'Product is Added to Cart Successfully !');
 
-        return response()->json($product, Response::HTTP_OK);
+        return response()->json('Đã thêm sản phẩm ' . $product->name . ' vào giỏ hàng', Response::HTTP_OK);
     }
 
     public function update(Request $request)

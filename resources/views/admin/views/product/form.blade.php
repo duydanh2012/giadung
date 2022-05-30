@@ -104,6 +104,15 @@
                                       </select>
                                 </div>
 
+                                <div class="mb-3">
+                                    <select class="form-select form-select-sm" name="origin_id" aria-label=".form-select-sm trademark">
+                                        <option selected>Xuất xứ</option>
+                                        @foreach ($origins as $origin)
+                                            <option value="{{ $origin->id }}"  @if(isset($data) && $data->origin_id == $origin->id) selected @endif>{{ $origin->name }}</option>
+                                        @endforeach
+                                      </select>
+                                </div>
+
                                 <div class="mb-3 input-group-sm border ">
                                     <label class="form-label-sm mb-1 ps-1">Loại sản phẩm</label>
                                     @php

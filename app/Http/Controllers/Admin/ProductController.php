@@ -10,6 +10,7 @@ use App\Models\Trademark;
 use App\Models\Type;
 use App\FileHelper;
 use App\Models\Media;
+use App\Models\Origin;
 
 class ProductController extends Controller
 {
@@ -34,8 +35,9 @@ class ProductController extends Controller
     {
         $types = Type::orderBy('name', 'asc')->get();
         $trademarks = Trademark::orderBy('name', 'asc')->get();
+        $origins = Origin::orderBy('name', 'asc')->get();
 
-        return view('admin.views.product.form')->with(compact('types', 'trademarks'));
+        return view('admin.views.product.form')->with(compact('types', 'trademarks', 'origins'));
     }
 
     /**
@@ -104,8 +106,9 @@ class ProductController extends Controller
         $media = Media::where('reference_id', $id)->where('reference_type', get_class($data))->get();
         $types = Type::orderBy('name', 'asc')->get();
         $trademarks = Trademark::orderBy('name', 'asc')->get();
+        $origins = Origin::orderBy('name', 'asc')->get();
 
-        return view('admin.views.product.form')->with(compact('types', 'trademarks', 'data', 'media'));
+        return view('admin.views.product.form')->with(compact('types', 'trademarks', 'data', 'media', 'origins'));
     }
 
     /**

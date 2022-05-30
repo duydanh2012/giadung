@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Trademark;
+use Illuminate\Support\Str;
 
 class TrademarkController extends Controller
 {
@@ -38,7 +39,16 @@ class TrademarkController extends Controller
      */
     public function store(Request $request)
     {
-        Trademark::create($request->input());
+        $data = $request->input();
+        $data['slug'] = Str::slug($request->input('name'));
+
+        $checkSlug = Trademark::where('slug', $data['slug'])->count();
+
+        if($checkSlug){
+            $data['slug'] =  $data['slug'] . '-' . strtotime(now());
+        }
+
+        Trademark::create($data);
 
         return redirect(route('trademark.index'))->with('alert_success', 'Thêm thương hiệu thành công!');
     }
@@ -78,7 +88,16 @@ class TrademarkController extends Controller
     {
         $data = Trademark::find($id);
 
-        $data->fill($request->input());
+        $inputTrademark = $request->input();
+        $inputTrademark['slug'] = Str::slug($request->input('name'));
+
+        $checkSlug = Trademark::where('slug', $inputTrademark['slug'])->count();
+
+        if($checkSlug){
+            $inputTrademark['slug'] =  $inputTrademark['slug'] . '-' . strtotime(now());
+        }
+
+        $data->fill($inputTrademark);
         $data->save();
 
         return redirect(route('trademark.index'))->with('alert_success', 'Sửa thương hiệu thành công!');

@@ -41,6 +41,13 @@ class TypeController extends Controller
     {
         $data = $request->input();
         $data['slug'] = Str::slug($request->input('name'));
+
+        $checkSlug = Type::where('slug', $data['slug'])->count();
+
+        if($checkSlug){
+            $data['slug'] =  $data['slug'] . '-' . strtotime(now());
+        }
+
         Type::create($data);
 
         return redirect(route('type.index'))->with('alert_success', 'Thêm loại sản phẩm thành công!');
@@ -83,6 +90,12 @@ class TypeController extends Controller
 
         $inputType = $request->input();
         $inputType['slug'] = Str::slug($request->input('name'));
+
+        $checkSlug = Type::where('slug', $inputType['slug'])->count();
+
+        if($checkSlug){
+            $inputType['slug'] =  $inputType['slug'] . '-' . strtotime(now());
+        }
 
         $data->fill($inputType);
         $data->save();

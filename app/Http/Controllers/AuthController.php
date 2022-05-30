@@ -82,6 +82,7 @@ class AuthController extends Controller
     public function logout()
     {
         if(Auth::check()){
+            \Cart::clear();
             Auth::logout();
             return redirect(route('login'));
         }

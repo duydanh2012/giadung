@@ -28,11 +28,17 @@ class Product extends Model
         'quantity',
         'trademark_id',
         'price_import',
+        'origin_id',
     ];
 
     public function trademark(): BelongsTo
     {
     	return $this->belongsTo(Trademark::class, 'trademark_id', 'id');
+    }
+
+    public function origin(): BelongsTo
+    {
+    	return $this->belongsTo(Origin::class, 'origin_id', 'id');
     }
 
     public function types(): BelongsToMany

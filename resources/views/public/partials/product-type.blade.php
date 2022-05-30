@@ -1,6 +1,6 @@
 
 <div class="features_items"><!--features_items-->
-    <h2 class="title text-center">Danh mục {{ $name }}</h2>
+    <h2 class="title text-center">{{ $name }}</h2>
 
     @if ($products->count() > 0)
         @foreach ($products as $item)

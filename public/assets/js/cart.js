@@ -40,7 +40,7 @@ $(document).ready(function(){
             type : 'POST',
             dataType : 'json',
             success : function(result){
-                alert('Đã thêm sản phẩm ' + result.name + ' vào giỏ hàng');
+                alert(result);
             }
         });
     })
@@ -117,7 +117,7 @@ $(document).ready(function(){
             type : 'POST',
             dataType : 'json',
             success : function(result){
-                alert('Đã thêm sản phẩm ' + result.name + ' vào giỏ hàng');
+                alert(result);
             }
         });
     })

@@ -63,6 +63,14 @@
         <a class="btn btn-primary float-right mb-5" href="{{ route('public.payment') }}" role="button">Tiến hành thanh toán</a>
     </div>
 </section> <!--/#cart_items-->
+<input type="hidden" name="error" id="noti_error" value="{{ session('error') ? session('error') : null }}">
+<script>
+    let err = document.getElementById('noti_error').value;
+
+    if (err) {
+        alert(err);
+    }
+</script>
 @stop
 
 @section('scripts')

@@ -16,6 +16,7 @@ class Trademark extends Model
     protected $fillable = [
         'id', 
         'name',
+        'slug',
     ];
 
     public function products(): HasMany

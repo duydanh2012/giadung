@@ -85,7 +85,8 @@
                                     Thêm vào giỏ hàng
                                 </a>
                             </div>
-                            <p><b>Hãng sản xuất:</b> {{ $data->trademark->name }}</p>
+                            <p><b>Hãng sản xuất:</b> <a href="{{ route('public.trademark', $data->trademark->slug) }}">{{ $data->trademark->name }}</a></p>
+                            <p><b>Xuất xứ:</b> <a href="{{ route('public.origin', $data->origin->slug) }}">{{ $data->origin->name }}</a></p>
                             <p><b>Loại sản phẩm:</b> 
                                 @php
                                     $types = '';
